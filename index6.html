@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <body background=".jpg">
+    <table aliign="left" border="1" cellpadding="0" cellspacing="0" widht="900" height= "1100">
+  <body text=black; bgcolor=black>
+  <link rel="stylesheet" type="text/css"href="style.css"
+  <meta charset="utf-8">
+ <style media="screen">
+ </style>
+<head>
+  <h1> main </h1>
+<script>
+let admin, name;
+name= "Добро пожаловать!";
+
+admin= name
+
+alert(admin)
+</script>
+<div class="tabs">
+
+    <input type="radio" name="inset" value="" id="tab_1" checked>
+    <label for="tab_1">Страница №1</label>
+
+    <input type="radio" name="inset" value="" id="tab_2">
+    <label for="tab_2">Страница №2</label>
+
+    <input type="radio" name="inset" value="" id="tab_3">
+    <label for="tab_3">Страница №3</label>
+
+    <input type="radio" name="inset" value="" id="tab_4">
+    <label for="tab_4">Страница №4</label>
+
+    <div id="txt_1">
+        <p>Заголовок...</p>
+        <p>Заголовок 2...</p>
+        <p>Заголовок 3...</p>
+    </div>
+    <div id="txt_2">
+        <p>Заголовок</p>
+    </div>
+    <div id="txt_3">
+        <p>Текст</p>
+        <p>Текст 2</p>
+    </div>
+    <div id="txt_4">
+        <img src="Снимок.jpg" width="550" height="300" alt="Лого">
+    </div>
+</div>
+
+<style type="text/css">
+.tabs { width: 100%; padding: 0px; margin: 0 auto; }
+.tabs>input { display: none; }
+.tabs>div {
+    display: none;
+    padding: 12px;
+    border: 1px solid #C0C0C0;
+    background: #FFFFFF;
+}
+.tabs>label {
+    display: inline-block;
+    padding: 7px;
+    margin: 0 -5px -1px 0;
+    text-align: center;
+    color: #666666;
+    border: 1px solid #C0C0C0;
+    background: #E0E0E0;
+    cursor: pointer;
+}
+.tabs>input:checked + label {
+    color: #000000;
+    border: 1px solid #C0C0C0;
+    border-bottom: 1px solid #FFFFFF;
+    background: #FFFFFF;
+}
+#tab_1:checked ~ #txt_1,
+#tab_2:checked ~ #txt_2,
+#tab_3:checked ~ #txt_3,
+#tab_4:checked ~ #txt_4 { display: block; }
+</style>
+
+<script type="text/javascript">
+function Input(){
+login_ok = false;
+user_name = "";
+password = "";
+user_name = prompt("Логин","");
+user_name = user_name.toLowerCase();
+password = prompt("Пароль","");
+password = password.toLowerCase();
+if (user_name=="login" && password=="pass") {
+ login_ok = true;
+ window.location = "index.php";
+}
+if (user_name=="login2" && password=="pass2") {
+ login_ok = true;
+ window.location = "forum/index.php";
+}
+
+if (login_ok==false) alert("Неверный логин или пароль!");
+}
+</script>
+<div align="center">
+ <form>
+  <input type="button" value="Войти на сайт" onClick="Input()">
+ </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+<span id="time">Дата и время</span>
+<script type="text/javascript">
+function clock() {
+var d = new Date();
+var day = d.getDate();
+var hrs = d.getHours();
+var min = d.getMinutes();
+var sec = d.getSeconds();
+
+var mnt = new Array("января", "февраля", "марта", "апреля", "мая",
+"июня", "июля", "августа", "сентября", "октября", "ноября", "декабря");
+
+if (day <= 9) day="0" + day;
+if (hrs <= 9) hrs="0" + hrs;
+if (min <=9 ) min="0" + min;
+if (sec <= 9) sec="0" + sec;
+
+$("#time").html("Сейчас: " + hrs + ":" + min + ":" + sec + "&nbsp;&nbsp;&nbsp;" +
+day + "-го " + mnt[d.getMonth()] + " " + d.getFullYear() + " г.");
+}
+setInterval("clock()",1000);
+</script>
+  </body>
+</head>
+  </html>
