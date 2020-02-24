@@ -130,6 +130,236 @@ day + "-го " + mnt[d.getMonth()] + " " + d.getFullYear() + " г.");
 }
 setInterval("clock()",1000);
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+<div style="height: 1000px; width: 300px; border: 1px solid #000000;">
+    <div id="floating_block"><img src="C:\Users\DELL\Desktop\site\github.png"></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+var footer = 90;
+var position = $("#floating_block").offset().top-20;
+
+$(window).scroll(function(){
+ var scroll = $(window).scrollTop();
+ if ($("#floating_block").height()<$(document).height()-footer-scroll) {
+    if (scroll>position) {
+        $("#floating_block").stop().animate({"paddingTop" : scroll-position}, 400);
+    }
+    else $("#floating_block").stop().animate({"paddingTop" : 0}, 400);
+ }
+});
+$(window).trigger("scroll");
+});
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+<div style="text-align: center;">
+ <div class="spoilers">
+  <div>Спойлер №1<div><img src="image/img_1.png" alt=""></div></div>
+  <div>Спойлер №2<div><img src="image/logo.png" alt=""></div></div>
+  <div>Спойлер №3<div>Текст...</div></div>
+  <div>Спойлер №4<div>Еще один текст...</div></div>
+  <div>Спойлер №5<div>Много текста<br>Много текста<br>Много текста</div></div>
+ </div>
+
+ <div class="spoilers">
+  <div>Спойлер №11<div><img src="image/img_1.png" alt=""></div></div>
+  <div>Спойлер №12<div><img src="image/img_2.png" alt=""></div></div>
+  <div>Спойлер №13<div><img src="image/img_3.png" alt=""></div></div>
+  <div>Спойлер №14<div><img src="image/img_4.png" alt=""></div></div>
+ </div>
+</div>
+<img src="image/sp_back.png" alt="Назад" class="sp_back">
+<img src="image/sp_forward.png" alt="Вперед" class="sp_forward">
+<style type="text/css">
+ .spoilers>div { display: inline-block; width: 105px; margin: 3px; padding: 2px;
+ border-radius: 8px; font-size: 14px; text-align: center; font-weight: bold;
+ color: #0000FF; border: 1px solid #808080; cursor: pointer; }
+ .selected { background-color: #CCCCCC; }
+ .spoilers>div>div, .clone { display: none; }
+ .sp_back { float: left; cursor: pointer; }
+ .sp_forward { float: right; cursor: pointer; }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+ $('.sp_back, .sp_forward').click(function() {
+  group = $('.selected').parent().children('div');
+  this_elem = group.index($('.selected'));
+ });
+
+ $('.sp_back').click(function() {
+  if (this_elem==0) group.eq(group.length-1).trigger('click');
+  else group.eq(this_elem-1).trigger('click');
+ });
+
+ $('.sp_forward').click(function() {
+  if (this_elem==group.length-1) group.eq(0).trigger('click');
+  else group.eq(this_elem+1).trigger('click');
+ });
+
+ $('.spoilers>div').click(function(){
+  time = 400;
+  $('.clone').clearQueue().fadeOut(time);
+  if ($(this).hasClass('selected')!=true) {
+   $('.spoilers>div').removeClass('selected');
+   $(this).addClass('selected');
+   $(this).children('div').clone().insertAfter($(this).parent()).addClass('clone')
+   .delay(time).fadeIn(time);
+  }
+  else $('.spoilers>div').removeClass('selected');
+ });
+});
+</script>
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+<div id="rating">
+<div class="param">Оценка 5:</div>
+<div><div class="stars"></div><p class="progress" id="p1"></p></div>
+<div class="rating" id="param1">5.0</div>
+
+<div class="param">Оценка 4:</div>
+<div><div class="stars"></div><p class="progress" id="p2"></p></div>
+<div class="rating" id="param2">5.0</div>
+
+<div class="param">Оценка 3:</div>
+<div><div class="stars"></div><p class="progress" id="p3"></p></div>
+<div class="rating" id="param3">5.0</div>
+
+
+<div class="param">Общая оценка:</div>
+<div><div id="sum_stars"></div><p id="sum_progress"></p></div>
+<div id="summ">5.00</div>
+
+<input id="el_999" type="submit" value="Отправить!">
+<p id="message"></p>
+</div>
+<style type="text/css">
+#rating {
+    width: 320px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 1px #333333;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+}
+#rating div { float: left; }
+#rating p { margin: 0; padding: 0; }
+.param {
+    width: 110px;
+    margin: 0 20px 0 0;
+    text-align: right;
+}
+.param, .rating, #summ { line-height: 28px; }
+.stars, #sum_stars { background: url(image/stars.png); }
+.stars, #sum_stars, .progress, #sum_progress {
+    width: 130px;
+    height: 28px;
+    cursor: pointer;
+}
+.progress { background: #FFEE00; }
+#sum_progress { background: #00EE00; }
+.rating, #summ {
+    margin: 0 0 0 20px;
+    font-weight: bold;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+ function move(e, obj){
+    var summ = 0;
+    var id = obj.next().attr('id').substr(1);
+    var progress = e.pageX - obj.offset().left;
+    var rating = progress * 5 / $('.stars').width();
+    $('#param'+id).text(rating.toFixed(1));
+    obj.next().width(progress);
+    $('.rating').each(function(){ summ += parseFloat($(this).text()); });
+    summ = summ / $('.rating').length;
+    $('#sum_progress').width(Math.round($('.stars').width() * summ / 5));
+    $('#summ').text(summ.toFixed(2));
+ }
+
+ $('#rating .stars').click(function(e){
+    $(this).toggleClass('fixed');
+    move(e, $(this));
+ });
+
+ $('#rating .stars').on('mousemove', function(e){
+    if ($(this).hasClass('fixed')==false) move(e, $(this));
+ });
+
+ $('#rating [type=submit]').click(function(){
+    summ = parseFloat($('#summ').text());
+    jQuery.post('change_rating.php', {
+        obj_id: $(this).attr('id').substr(3),
+        rating: summ
+    }, notice);
+ });
+
+ function notice(text){
+    $('#message').fadeOut(500, function(){ $(this).text(text); }).fadeIn(2000);
+ }
+});
+</script>
+<div class="rating" id="el_555">
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div id="star_rating">
+Рейтинг: <?php echo $rating;?>
+</div>
+<div id="star_votes">
+Оценили: <?php echo $stars["votes"];?>
+</div>
+</div>
+<div id="star_message"></div>
+<style type="text/css">
+.rating {
+    width: 150px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 1px #333333;
+    margin: 10px auto;
+    padding: 10px 20px;
+    text-align: center;
+}
+.star {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    cursor: pointer;
+    background: url(image/star.png);
+}
+.star2 { background: url(image/star2.png); }
+#star_message { text-align: center; }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".star").on("mouseover", function(){
+        $(".star").slice(0, $(".star").index(this)+1).addClass("star2");
+    });
+    $(".star").on("mouseout", function(){
+        $(".star").slice(0, $(".star").index(this)+1).removeClass("star2");
+    });
+    $(".star").on("click", function(){
+        jQuery.post("change_rating.php", {
+            obj_id: $(this).parent().attr("id").substr(3),
+            stars: $(".star").index(this)+1
+        }, notice, "json");
+    });
+    function notice(data){
+        $("#star_rating, #star_votes, #star_message").fadeOut(500, function(){
+            $("#star_rating").text(data.points);
+            $("#star_votes").text(data.votes);
+            $("#star_message").text(data.message);
+        }).fadeIn(1500);
+    }
+});
   </body>
 </head>
   </html>
